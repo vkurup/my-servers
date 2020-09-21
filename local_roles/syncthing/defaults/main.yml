@@ -1,0 +1,4 @@
+---
+app_user: "{{ ansible_user }}"
+app_name: syncthing
+image_name: linuxserver/{{ app_name }}

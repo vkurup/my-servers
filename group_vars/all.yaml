@@ -1,0 +1,27 @@
+---
+# weareinteractive.users
+users:
+  - username: "{{ ansible_user }}"
+    authorized_keys:
+      - "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    shell: "/bin/bash"
+
+# weareinteractive.sudo
+sudo_users:
+  - name: "{{ ansible_user }}"
+    nopasswd: yes
+purge_other_sudoers_files: yes
+
+# geerlingguy.security
+security_autoupdate_mail_to: "vinod@kurup.com"
+security_fail2ban_custom_configuration_template: "vkjail.local.j2"
+# geerlingguy.security does sudo settings, but we use the sudo role above for that
+
+# geerlingguy.pip
+pip_install_packages:
+  - name: docker
+  - name: docker-compose
+
+# geerlingguy.docker
+docker_users:
+  - "{{ ansible_user }}"

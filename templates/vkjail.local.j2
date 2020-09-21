@@ -1,0 +1,6 @@
+[sshd]
+enabled = true
+port    = {{ security_ssh_port }}
+filter  = sshd
+{# override to tell fail2ban to look in systemd logs #}
+backend = systemd

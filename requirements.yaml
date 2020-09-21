@@ -1,0 +1,13 @@
+---
+- src: weareinteractive.users
+  version: 1.16.0
+- src: weareinteractive.sudo
+  version: 1.14.1
+- src: geerlingguy.security
+  version: 2.0.1
+- src: geerlingguy.pip
+  version: 2.0.0
+- src: geerlingguy.docker
+  version: 2.8.2
+- src: geerlingguy.postfix
+  version: 2.0.0

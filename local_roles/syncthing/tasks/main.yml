@@ -1,0 +1,39 @@
+---
+- name: get uid and gid
+  getent:
+    database: passwd
+    key: "{{ app_user }}"
+
+- name: create config and data dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ getent_passwd[app_user].1 }}"
+    group: "{{ getent_passwd[app_user].2 }}"
+  loop:
+    - /opt/appdata/{{ app_name }}/config
+    - /opt/appdata/{{ app_name }}/data
+
+- name: create and start containers
+  docker_compose:
+    project_name: "{{ app_name }}"
+    remove_orphans: yes
+    definition:
+      version: "2.1"
+      services:
+        app:
+          image: "{{ image_name }}"
+          container_name: "{{ app_name }}"
+          hostname: "{{ inventory_hostname }}"
+          environment:
+            - PUID={{ getent_passwd[app_user].1 }}
+            - PGID={{ getent_passwd[app_user].2 }}
+            - TZ=America/New_York
+          volumes:
+            - /opt/appdata/{{ app_name }}/config:/config
+            - /opt/appdata/{{ app_name }}/data:/data
+          ports:
+            - 8384:8384
+            - 22000:22000
+            - 21027:21027/udp
+          restart: unless-stopped
