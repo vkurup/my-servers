@@ -1,0 +1,4 @@
+---
+app_user: "{{ ansible_user }}"
+r2e_config_path: ""
+r2e_data_path: ""

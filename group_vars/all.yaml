@@ -35,3 +35,7 @@ docker_users:
 domain: drkurup.com
 subdomains: "www,syncthing"
 swag_email: "{{ my_email }}"
+
+# localrole: rss2email
+r2e_config_path: "/opt/appdata/syncthing/data/vinod-dropbox/data/rss2email.cfg"
+r2e_data_path: "/opt/appdata/syncthing/data/vinod-dropbox/data/rss2email.json"

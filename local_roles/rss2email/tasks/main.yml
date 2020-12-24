@@ -1,0 +1,12 @@
+---
+- name: Install rss2email
+  apt:
+    name: rss2email
+    state: present
+
+- name: Check RSS every hour
+  cron:
+    user: "{{ app_user }}"
+    name: "check rss feeds"
+    minute: "0"
+    job: "r2e --config {{ r2e_config_path }} --data {{ r2e_data_path }} run > /dev/null"
