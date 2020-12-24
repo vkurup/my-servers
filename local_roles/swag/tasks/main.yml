@@ -18,6 +18,13 @@
   docker_network:
     name: lsio
 
+- name: add syncthing reverse proxy conf
+  copy:
+    src: syncthing.subdomain.conf
+    dest: /opt/appdata/{{ app_name }}/config/nginx/proxy-confs/syncthing.subdomain.conf
+    owner: "{{ getent_passwd[app_user].1 }}"
+    group: "{{ getent_passwd[app_user].2 }}"
+
 - name: create and start containers
   docker_compose:
     project_name: "{{ app_name }}"
@@ -25,17 +32,24 @@
     definition:
       version: "2.1"
       services:
-        app:
+        swag:
           image: "{{ image_name }}"
           container_name: "{{ app_name }}"
+          hostname: "{{ inventory_hostname }}"
           environment:
             - PUID={{ getent_passwd[app_user].1 }}
             - PGID={{ getent_passwd[app_user].2 }}
             - TZ=America/New_York
-            - DOCKER_MODS={{ image_name }}:calibre
+            - URL={{ domain }}
+            - SUBDOMAINS={{ subdomains }}
+            - VALIDATION=http
+            - EMAIL={{ swag_email }}
           volumes:
             - /opt/appdata/{{ app_name }}/config:/config
-            - /opt/appdata/{{ app_name }}/data:/books
+            - /opt/appdata/{{ app_name }}/data:/data
+          ports:
+            - 443:443
+            - 80:80 #optional
           restart: unless-stopped
       networks:
         default:

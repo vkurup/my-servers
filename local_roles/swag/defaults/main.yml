@@ -1,0 +1,7 @@
+---
+app_user: "{{ ansible_user }}"
+app_name: swag
+image_name: linuxserver/{{ app_name }}
+domain: ""
+subdomains: "www"
+swag_email: ""

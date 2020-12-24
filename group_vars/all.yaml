@@ -1,19 +1,23 @@
 ---
+me: vinod
+my_email: vinod@kurup.com
+
 # weareinteractive.users
 users:
-  - username: "{{ ansible_user }}"
+  - username: "{{ me }}"
     authorized_keys:
-      - "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGzbDE3xqnCZOfJF/MhgYRyq4cach264SdQZ0ntoPB1U vkurup@caktus020"
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5c3EtrrwEOwMfv5d6VyntdGsS2kRyWTKl26vqx7R0y vinod@kurup.com"
     shell: "/bin/bash"
 
 # weareinteractive.sudo
 sudo_users:
-  - name: "{{ ansible_user }}"
+  - name: "{{ me }}"
     nopasswd: yes
 purge_other_sudoers_files: yes
 
 # geerlingguy.security
-security_autoupdate_mail_to: "vinod@kurup.com"
+security_autoupdate_mail_to: "{{ my_email }}"
 security_fail2ban_custom_configuration_template: "vkjail.local.j2"
 # geerlingguy.security does sudo settings, but we use the sudo role above for that
 
@@ -24,4 +28,10 @@ pip_install_packages:
 
 # geerlingguy.docker
 docker_users:
-  - "{{ ansible_user }}"
+  - "{{ me }}"
+
+
+# localrole: swag
+domain: drkurup.com
+subdomains: "www,syncthing"
+swag_email: "{{ my_email }}"

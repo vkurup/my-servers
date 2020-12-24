@@ -14,6 +14,10 @@
     - /opt/appdata/{{ app_name }}/config
     - /opt/appdata/{{ app_name }}/data
 
+- name: Create docker network for containers to share
+  docker_network:
+    name: lsio
+
 - name: create and start containers
   docker_compose:
     project_name: "{{ app_name }}"
@@ -33,7 +37,10 @@
             - /opt/appdata/{{ app_name }}/config:/config
             - /opt/appdata/{{ app_name }}/data:/data
           ports:
-            - 8384:8384
             - 22000:22000
             - 21027:21027/udp
           restart: unless-stopped
+      networks:
+        default:
+          external:
+            name: lsio

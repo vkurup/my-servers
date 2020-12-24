@@ -1,7 +1,8 @@
 vagrant ansible_host=192.168.33.10 ansible_user=vinod
+do1 ansible_host=192.34.62.43 ansible_user=vinod
 
 [prod]
-git.drkurup.com ansible_user=vinod
+do1
 
 [test]
 vagrant
