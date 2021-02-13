@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: do1
   become: yes
   roles:
     - geerlingguy.pip
@@ -9,3 +9,12 @@
     - syncthing
     - calibre-web
     - rss2email
+
+- hosts:
+    - nodevps1
+    - nodevps2
+  become: yes
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+    - geerlingguy.postfix

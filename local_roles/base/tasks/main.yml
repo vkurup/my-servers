@@ -1,0 +1,12 @@
+---
+- name: Install base packages
+  apt:
+    pkg:
+    - htop
+
+- name: Monitor uptime
+  cron:
+    user: "{{ app_user }}"
+    name: "check uptime"
+    minute: "1"
+    job: "curl -fsS --retry 5 -o /dev/null {{ connectivity_hc_url }}"

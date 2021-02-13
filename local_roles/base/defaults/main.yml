@@ -1,0 +1,3 @@
+---
+app_user: "{{ ansible_user }}"
+connectivity_hc_url: ""

@@ -2,6 +2,8 @@
 - hosts: all
   become: yes
   roles:
+    - anxs.hostname
     - weareinteractive.users
     - weareinteractive.sudo
     - geerlingguy.security
+    - base

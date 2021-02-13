@@ -30,7 +30,6 @@ pip_install_packages:
 docker_users:
   - "{{ me }}"
 
-
 # localrole: swag
 domain: drkurup.com
 subdomains: "www,syncthing"
