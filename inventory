@@ -5,7 +5,7 @@ nodevps1 ansible_host=old.drkurup.com ansible_user=vinod
 
 [prod]
 do1
-nodevps1
+# nodevps1
 # nodevps2
 
 [test]
