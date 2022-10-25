@@ -3,6 +3,7 @@
   apt:
     pkg:
     - htop
+    - net-tools
 
 - name: Monitor uptime
   cron:

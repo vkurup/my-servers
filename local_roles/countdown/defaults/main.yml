@@ -1,0 +1,4 @@
+---
+app_user: "{{ ansible_user }}"
+app_name: countdown
+image_name: vkurup/{{ app_name }}

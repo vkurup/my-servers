@@ -5,10 +5,12 @@
     - geerlingguy.pip
     - geerlingguy.docker
     - geerlingguy.postfix
+    - base
     - swag
     - syncthing
     - calibre-web
     - rss2email
+    - countdown
 
 - hosts:
     - nodevps1

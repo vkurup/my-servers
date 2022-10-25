@@ -24,6 +24,8 @@ Set up
 
      sudo apt install vagrant
 
+#. Get the /dev/my-servers .vault_pass from 1Password and save it to a file .vault_pass
+   a the top level of this repo.
 
 Test
 ----
